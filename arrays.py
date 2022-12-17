@@ -1,10 +1,9 @@
 class Array:
-    def __init__(self, value: list, startIndex=-1):
+    def __init__(self, value: list, startIndex=0):
         self.value = value
         self.index = startIndex
 
     def forEach(self, do):
-        self.index+=1
         if self.index!=len(self.value):
             try:
                 do(self.value[self.index], self.index, self.value)
@@ -13,9 +12,8 @@ class Array:
                     do(self.value[self.index], self.index)
                 except:
                     do(self.value[self.index])
+            self.index+=1
             Array(self.value, startIndex=self.index).forEach(do)
-        else:
-            self.index = -1
 
 # arr = Array([1,2,3])
 # arr.forEach(lambda n: print(n))
